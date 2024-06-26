@@ -1,16 +1,14 @@
-const http = require('http');
-const myMod = require("./export_eg")
+const express = require("express")
+const app = express();
 
-const server = http.createServer((req, res) => {
-    if (req.url == "/") {
-        console.log(myMod.add(10 , 9));
-        res.end("<h1> HEllo World </h1>")
-    } else if (req.url == "/about") {
-        res.end("<h1> About Me </h1>")
-    }
-})
+app.get('/', (req, res) => {
+    console.log("home route accessed.")
+    // res.download("./index.js")
+    res.status(500).json({ message: "Hello" })
 
 
-server.listen(5000, () => {
-    console.log("Server is uptime.")
-})
+});
+
+app.listen(5000, () => {
+    console.log("Server is running.")
+});
